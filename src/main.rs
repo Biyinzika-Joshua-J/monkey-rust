@@ -1,8 +1,14 @@
 mod lexer;
 
-use lexer::lexer::{Token, TokenType};
+use lexer::lexer::{Token, TokenType, Lexer};
 
-fn main() {
-    let token = Token{kind: TokenType::IDENTIFIER, literal:String::from("name")};
-    println!("{:#?}", token);
+fn main() {    
+    let program  = "let x = 42;";
+    
+    // Lexer phase
+    let mut lexer = Lexer::new(String::from(program));
+    
+    let tokens = lexer.getTokens();
+
+    println!("{:#?}", tokens);
 }
