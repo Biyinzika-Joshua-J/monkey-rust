@@ -159,3 +159,41 @@ fn lookup_token_type(token_type: &str) -> TokenType {
         _ => TokenType::ILLEGAL,
     }
 }
+
+
+#[cfg(test)]
+mod test {
+
+    use crate::lexer::test_cases;
+
+    use super::*;
+
+    #[test]
+    fn it_should_init_lexer(){
+        let program  = "let x = 42;";
+        let mut lexer = Lexer::new(String::from(program));
+
+        assert_eq!(lexer.program, program);
+        assert_eq!(lexer.current_token_idx, 0);
+        assert_eq!(lexer.program_length, program.len());
+        assert_eq!(lexer.tokens.len(), 0);
+    }
+
+    fn assert_tokens(input: &str, expected: &Vec<Token>) {
+        let mut lexer = Lexer::new(input.to_string());
+        let tokens = lexer.getTokens();
+    
+        assert_eq!(tokens, expected);
+    }
+    
+    #[test]
+    fn it_should_create_tokens() {
+       
+       let test_cases = test_cases::get_test_cases();
+    
+        for (input, expected_tokens) in test_cases.iter() {
+            assert_tokens(input, expected_tokens);
+        }
+
+    }
+}
