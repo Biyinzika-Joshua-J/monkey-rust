@@ -1,3 +1,8 @@
+mod lexer;
+
+use lexer::lexer::{Token, TokenType};
+
 fn main() {
-    println!("Hello, world!");
+    let token = Token{kind: TokenType::IDENTIFIER, literal:String::from("name")};
+    println!("{:#?}", token);
 }
