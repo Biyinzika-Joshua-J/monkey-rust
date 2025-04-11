@@ -1,6 +1,6 @@
 mod lexer;
 
-use lexer::lexer::{Token, TokenType, Lexer};
+use lexer::lexer::{Lexer};
 
 fn main() {    
     let program  = "let x = 42;";
